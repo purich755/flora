@@ -47,28 +47,50 @@ const MENU = [
   }
 ];
 
-/* ---------- Кадры видео ---------- */
+/* ---------- Кадры видео ----------
+   Два набора: горизонтальный для десктопа и вертикальный для телефона.
+   Отдавать телефону широкий кадр дорого: его пришлось бы растягивать
+   вчетверо по площади, и прокрутка проседала до 19 fps. */
 const FRAME_COUNT = 121;
-const framePath = i => `assets/frames/frame_${String(i + 1).padStart(3, '0')}.webp`;
+const COARSE = window.matchMedia('(hover: none)').matches;
+const PORTRAIT = window.innerHeight > window.innerWidth;
+/* Три набора кадров под форму экрана. Широкий кадр на вертикальном экране
+   приходится растягивать вчетверо по площади: именно это роняло прокрутку. */
+const FRAME_DIR =
+  PORTRAIT && window.innerWidth < 1000 ? 'assets/frames-m' :   /* телефон, планшет */
+  COARSE ? 'assets/frames-mw' :                                /* телефон боком */
+  'assets/frames';                                             /* десктоп */
+const framePath = i => `${FRAME_DIR}/frame_${String(i + 1).padStart(3, '0')}.webp`;
+/* Бюджет пикселей канваса. Ограничивать только devicePixelRatio мало:
+   на планшете тот же множитель даёт вдвое больше пикселей, чем на телефоне. */
+const PIXEL_BUDGET = COARSE ? 780e3 : 2.4e6;
 const frames = new Array(FRAME_COUNT).fill(null);
 let framesLoaded = 0;
 
 const canvas = document.getElementById('expCanvas');
-const ctx = canvas.getContext('2d');
+const ctx = canvas.getContext('2d', { alpha: false });
 const expState = { frame: 0 };
+let lastDrawn = -1;
+
+/* Ступени качества: слабые телефоны сами опускаются на ступень ниже,
+   вместо того чтобы честно рисовать и дёргаться. */
+const QUALITY = [1, 0.78, 0.62];
+let qualityStep = 0;
 
 function sizeCanvas() {
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
   const { clientWidth: w, clientHeight: h } = canvas;
   if (!w || !h) return;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2, Math.sqrt(PIXEL_BUDGET / (w * h))) * QUALITY[qualityStep];
   canvas.width = Math.round(w * dpr);
   canvas.height = Math.round(h * dpr);
+  lastDrawn = -1;
   drawFrame(expState.frame);
 }
 
 /* Рисуем ближайший загруженный кадр (cover) */
 function drawFrame(index) {
   let i = Math.round(index);
+  if (i === lastDrawn) return;
   if (!frames[i]) {
     let found = -1;
     for (let d = 1; d < FRAME_COUNT; d++) {
@@ -82,8 +104,8 @@ function drawFrame(index) {
   const cw = canvas.width, ch = canvas.height;
   const scale = Math.max(cw / img.width, ch / img.height);
   const dw = img.width * scale, dh = img.height * scale;
-  ctx.clearRect(0, 0, cw, ch);
   ctx.drawImage(img, (cw - dw) / 2, (ch - dh) / 2, dw, dh);
+  lastDrawn = i;
 }
 
 /* ---------- Прелоадер: грузим кадры, шрифты и hero ---------- */
@@ -159,7 +181,9 @@ function init() {
     smooth: 1.2,
     effects: true,
     smoothTouch: false,
-    normalizeScroll: false
+    /* На тач-устройствах прокрутку ведёт GSAP, а не компоновщик браузера:
+       иначе закреплённая секция и скраббинг кадров расходятся и видео дёргается. */
+    normalizeScroll: TOUCH
   });
 
   initAnchors();
@@ -219,6 +243,8 @@ function initNavState() {
 function initExperience() {
   const msgs = gsap.utils.toArray('.exp__msg');
 
+  let scrubbing = false;
+
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: '.exp',
@@ -226,9 +252,30 @@ function initExperience() {
       end: '+=420%',
       pin: true,
       scrub: 0.6,
-      anticipatePin: 1
+      anticipatePin: 1,
+      onToggle: self => { scrubbing = self.isActive; }
     }
   });
+
+  /* Следим за реальной частотой кадров и снижаем плотность канваса,
+     если устройство не успевает. Считаем долю медленных кадров в окне:
+     они приходят вразбивку, поэтому счётчик подряд идущих не сработал бы.
+     Только для тач-экранов: на десктопе запаса хватает. */
+  if (COARSE) {
+    let window_ = 0, slow = 0;
+    gsap.ticker.add((time, deltaMs) => {
+      if (!scrubbing || qualityStep >= QUALITY.length - 1) return;
+      window_++;
+      if (deltaMs > 34) slow++;
+      if (window_ < 90) return;
+      if (slow / window_ > 0.1) {
+        qualityStep++;
+        sizeCanvas();
+      }
+      window_ = 0;
+      slow = 0;
+    });
+  }
 
   /* Кадры: позиция скролла напрямую управляет видео */
   tl.to(expState, {
@@ -238,8 +285,11 @@ function initExperience() {
     onUpdate: () => drawFrame(expState.frame)
   }, 0);
 
-  /* Лёгкое «дыхание» сцены */
-  tl.fromTo('.exp__canvas', { scale: 1.06 }, { scale: 1, ease: 'none', duration: 10 }, 0);
+  /* Лёгкое «дыхание» сцены. На телефоне пропускаем: масштабирование
+     полноэкранного канваса заставляет заново растрировать слой каждый кадр. */
+  if (!TOUCH) {
+    tl.fromTo('.exp__canvas', { scale: 1.06 }, { scale: 1, ease: 'none', duration: 10 }, 0);
+  }
 
   /* Сообщения: появление и уход с blur-reveal */
   const beats = [
