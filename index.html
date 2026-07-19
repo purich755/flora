@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Флора — кофейня-оранжерея в Самаре</title>
+<meta name="description" content="Кофейня «Флора» на Чапаевской, 91 в Самаре. Кофе на светлой обжарке, матча, авторские десерты и сотни живых растений. Оранжерея посреди города.">
+<meta property="og:title" content="Флора — кофейня-оранжерея в Самаре">
+<meta property="og:description" content="Кофе, матча и сотни живых растений на Чапаевской, 91. Место, где кофе встречается с природой.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/img/poster.jpg">
+<meta name="theme-color" content="#12261b">
+<link rel="icon" type="image/svg+xml" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><mask id="h"><rect width="100" height="100" fill="white"/><circle cx="50" cy="50" r="11" fill="black"/></mask></defs><g fill="%234fae3f" mask="url(%23h)"><circle cx="50" cy="32.5" r="21"/><circle cx="66.6" cy="44.6" r="21"/><circle cx="60.3" cy="64.2" r="21"/><circle cx="39.7" cy="64.2" r="21"/><circle cx="33.4" cy="44.6" r="21"/></g></svg>'>
+<link rel="preload" href="assets/img/interior-window.webp" as="image">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CafeOrCoffeeShop",
+  "name": "Флора",
+  "servesCuisine": "Кофейня",
+  "telephone": "+7 917 147-81-31",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Чапаевская ул., 91",
+    "addressLocality": "Самара",
+    "addressCountry": "RU"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "opens": "11:00",
+    "closes": "21:00"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5.0",
+    "ratingCount": "126"
+  }
+}
+</script>
+</head>
+<body>
+
+<!-- Брендовый знак: пятилепестковый цветок с прозрачной сердцевиной -->
+<svg class="svg-defs" aria-hidden="true" focusable="false">
+  <defs>
+    <mask id="flora-hole">
+      <rect x="0" y="0" width="100" height="100" fill="white"/>
+      <circle cx="50" cy="50" r="11" fill="black"/>
+    </mask>
+    <symbol id="flora-mark" viewBox="0 0 100 100">
+      <g mask="url(#flora-hole)">
+        <circle cx="50" cy="32.5" r="21"/>
+        <circle cx="66.6" cy="44.6" r="21"/>
+        <circle cx="60.3" cy="64.2" r="21"/>
+        <circle cx="39.7" cy="64.2" r="21"/>
+        <circle cx="33.4" cy="44.6" r="21"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ===== Preloader ===== -->
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="preloader__inner">
+    <svg class="preloader__mark"><use href="#flora-mark"/></svg>
+    <div class="preloader__count"><span id="preloaderCount">0</span><em>%</em></div>
+    <p class="preloader__hint">поливаем растения…</p>
+  </div>
+</div>
+
+<!-- ===== Навигация ===== -->
+<header class="nav" id="nav">
+  <a class="nav__brand" href="#hero" aria-label="Флора, на главную">
+    <svg class="nav__mark"><use href="#flora-mark"/></svg>
+    <span class="nav__word">Флора</span>
+  </a>
+  <nav class="nav__links" aria-label="Основная навигация">
+    <a href="#menu">Меню</a>
+    <a href="#gallery">Атмосфера</a>
+    <a href="#about">О кофейне</a>
+    <a href="#visit">Контакты</a>
+  </nav>
+  <a class="nav__phone" href="tel:+79171478131">+7 (917) 147-81-31</a>
+  <button class="nav__burger" id="burger" aria-label="Открыть меню" aria-expanded="false">
+    <span></span><span></span>
+  </button>
+</header>
+
+<!-- Мобильное меню -->
+<div class="mobnav" id="mobnav" aria-hidden="true">
+  <nav class="mobnav__links" aria-label="Мобильная навигация">
+    <a href="#menu">Меню</a>
+    <a href="#gallery">Атмосфера</a>
+    <a href="#about">О кофейне</a>
+    <a href="#visit">Контакты</a>
+  </nav>
+  <a class="mobnav__phone" href="tel:+79171478131">+7 (917) 147-81-31</a>
+</div>
+
+<div id="smooth-wrapper">
+<div id="smooth-content">
+<main>
+
+  <!-- ===== 1. Hero ===== -->
+  <section class="hero" id="hero">
+    <div class="hero__media" data-speed="0.85">
+      <img class="hero__img" src="assets/img/interior-window.webp" alt="Зал кофейни Флора: растения на подоконниках и утренний свет" fetchpriority="high">
+      <div class="hero__scrim"></div>
+    </div>
+    <div class="hero__blob hero__blob--a" aria-hidden="true"></div>
+    <div class="hero__blob hero__blob--b" aria-hidden="true"></div>
+    <div class="hero__content">
+      <p class="hero__eyebrow">Кофейня-оранжерея в Самаре</p>
+      <h1 class="hero__title">Место, где кофе<br>встречается <em>с природой</em></h1>
+      <p class="hero__sub">Сотни растений, солнечный свет и запах свежей обжарки в старом центре города.</p>
+      <div class="hero__cta">
+        <a class="btn btn--dark" href="#menu">Посмотреть меню</a>
+        <a class="btn btn--ghost" href="#visit">Как нас найти</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 2. Scroll Experience: видео, управляемое прокруткой ===== -->
+  <section class="exp" id="experience" aria-label="Видео о кофейне, управляемое прокруткой">
+    <div class="exp__pin">
+      <canvas class="exp__canvas" id="expCanvas"></canvas>
+      <div class="exp__msg exp__msg--1"><p>Аромат свежего кофе</p></div>
+      <div class="exp__msg exp__msg--2"><p>Среди сотен растений</p></div>
+      <div class="exp__msg exp__msg--3"><p>Место, где хочется остаться</p></div>
+      <div class="exp__msg exp__msg--4"><p>Каждая чашка — маленький ритуал</p></div>
+      <div class="exp__msg exp__msg--5"><p>Добро пожаловать во Флору</p></div>
+    </div>
+  </section>
+
+  <!-- ===== 3. О кофейне ===== -->
+  <section class="about" id="about">
+    <div class="container about__grid">
+      <div class="about__story">
+        <h2 class="about__title split-lines">Оранжерея<br>на Чапаевской</h2>
+        <p class="about__lead split-lines">«Флора» началась с простого наблюдения: в центре города почти не осталось мест, где можно выдохнуть.</p>
+        <p class="about__text">Мы нашли помещение со старыми потолками на Чапаевской, покрасили стены в цвет молодой листвы и начали привозить растения. Сначала десять, потом сто. Теперь зелени здесь больше, чем стульев, и это соотношение нас полностью устраивает.</p>
+        <p class="about__text">Мы варим кофе на светлой обжарке, взбиваем матчу, по утрам печём канеле и помним постоянных гостей по именам. Заходите как в гости: с книгой, с собакой, с хорошими новостями.</p>
+      </div>
+      <aside class="about__facts" data-lag="0.15">
+        <div class="facts">
+          <div class="facts__row">
+            <span class="facts__label">Адрес</span>
+            <span class="facts__value">Чапаевская ул., 91, Самара</span>
+          </div>
+          <div class="facts__row">
+            <span class="facts__label">Телефон</span>
+            <a class="facts__value" href="tel:+79171478131">+7 (917) 147-81-31</a>
+          </div>
+          <div class="facts__row">
+            <span class="facts__label">Рейтинг</span>
+            <span class="facts__value facts__stars" aria-label="5 из 5">★★★★★ <b>5,0</b> · 126 оценок</span>
+          </div>
+          <div class="facts__badge">Хорошее место 2026</div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===== 4. Атмосфера: галерея ===== -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <h2 class="gallery__title split-lines">Свет, зелень<br>и <em>немного пара</em></h2>
+    </div>
+    <div class="container gallery__grid">
+      <figure class="gcard gcard--tall" data-cap="Утренний свет у окна">
+        <img src="assets/img/interior-window.webp" alt="Столик у окна среди растений" loading="lazy">
+      </figure>
+      <figure class="gcard gcard--wide" data-cap="Зелёная стена веранды">
+        <img src="assets/img/green-wall.webp" alt="Деревянные кресла у зелёной рейчатой стены" loading="lazy">
+      </figure>
+      <figure class="gcard" data-cap="Чизкейк и капучино">
+        <img src="assets/img/cheesecake-latte.webp" alt="Баскский чизкейк и капучино на клетчатой скатерти" loading="lazy">
+      </figure>
+      <figure class="gcard gcard--tall" data-cap="Айс-латте и матча">
+        <img src="assets/img/iced-latte-matcha.webp" alt="Айс-латте и матча в лучах солнца" loading="lazy">
+      </figure>
+      <figure class="gcard" data-cap="Раф с клубникой">
+        <img src="assets/img/raf-strawberry.webp" alt="Розовый раф с кусочками клубники" loading="lazy">
+      </figure>
+      <figure class="gcard gcard--tall" data-cap="Молоко встречает эспрессо">
+        <img src="assets/img/drink-pour.webp" alt="Молочная пена наливается в стакан со льдом" loading="lazy">
+      </figure>
+      <figure class="gcard" data-cap="Сезонная линейка напитков">
+        <img src="assets/img/drinks-signature.webp" alt="Четыре авторских зимних напитка" loading="lazy">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== 5. Почему Флора ===== -->
+  <section class="why" id="why">
+    <div class="container">
+      <h2 class="why__title split-lines">Почему <em>Флора</em></h2>
+      <div class="why__grid">
+        <article class="wcard wcard--photo">
+          <img src="assets/img/interior-window.webp" alt="" loading="lazy" aria-hidden="true">
+          <div class="wcard__overlay">
+            <h3>Оранжерея посреди города</h3>
+            <p>Приглушённый свет, живая зелень и тишина, в которой слышно кофемашину.</p>
+          </div>
+        </article>
+        <article class="wcard">
+          <h3>Альтернативное молоко без доплаты</h3>
+          <p>Овсяное, миндальное или кокосовое — по слову бариста, а не по прайсу.</p>
+        </article>
+        <article class="wcard">
+          <h3>Авторские напитки и матча</h3>
+          <p>Сезонная линейка, которую мы придумываем сами. Матчу взбиваем венчиком.</p>
+        </article>
+        <article class="wcard">
+          <h3>Десерты собственной витрины</h3>
+          <p>Канеле, тарталетки и то, что испекли сегодня утром.</p>
+        </article>
+        <article class="wcard">
+          <h3>Летняя веранда</h3>
+          <p>Зелёная стена, деревянные кресла и солнце до самого вечера.</p>
+        </article>
+        <article class="wcard">
+          <h3>Можно с животными</h3>
+          <p>Вода для собак всегда стоит у входа. Корги здесь свои.</p>
+        </article>
+        <article class="wcard">
+          <h3>С собой</h3>
+          <p>Кофе и еда навынос в стакане с нашим цветком.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 6. Меню ===== -->
+  <section class="menu" id="menu">
+    <div class="container">
+      <h2 class="menu__title split-lines">Витрина <em>сезона</em></h2>
+      <div class="menu__filters" role="tablist" aria-label="Категории меню">
+        <button class="chip is-active" data-filter="all">Всё</button>
+        <button class="chip" data-filter="drinks">Напитки</button>
+        <button class="chip" data-filter="desserts">Десерты</button>
+        <button class="chip" data-filter="bakery">Выпечка</button>
+      </div>
+      <div class="menu__grid" id="menuGrid"></div>
+      <p class="menu__note">Это часть витрины. Полное меню — в кофейне, обновляется каждый сезон.</p>
+    </div>
+  </section>
+
+  <!-- ===== 7. Зелёная пауза ===== -->
+  <section class="plants" id="plants">
+    <div class="plants__pin">
+      <img class="plants__img" src="assets/img/green-wall.webp" alt="Зелёная рейчатая стена веранды крупным планом" loading="lazy">
+      <div class="plants__scrim"></div>
+      <blockquote class="plants__quote split-lines">Зелень здесь не декор,<br>а вторая половина рецепта.</blockquote>
+    </div>
+  </section>
+
+  <!-- ===== 8. Отзывы ===== -->
+  <section class="reviews" id="reviews">
+    <div class="container">
+      <h2 class="reviews__title split-lines">Гости говорят</h2>
+      <p class="reviews__meta">Рейтинг на Яндекс Картах: 5,0 из 126 оценок.</p>
+      <div class="reviews__grid">
+        <figure class="rcard rcard--big">
+          <blockquote>«Обожаю это место, кафе покоряет с порога своим интерьером: всё в зелени, много дерева, чувствуешь себя как в уютной оранжерее. Здесь приятно скрыться от городской суеты. Люблю приходить сюда, чтобы отдохнуть от толпы. Народа всегда немного, играет спокойная музыка. Моё уважение Роману за то, что сохраняет традиции приготовления и подачи чая: всегда выходит вкусно и как должно быть.»</blockquote>
+          <figcaption>Николай <time>6 марта</time></figcaption>
+        </figure>
+        <figure class="rcard">
+          <blockquote>«Место, в которое хочется возвращаться. Каждое посещение вызывает гастрономическое удовольствие, любая из позиций сезонного меню, что я пробовал, не оставила меня равнодушным. Десерты высокого качества и по-домашнему вкусные. Отдельное спасибо бариста за создание уюта и комфорта в заведении.»</blockquote>
+          <figcaption>Денис Гордеев <time>6 марта</time></figcaption>
+        </figure>
+        <figure class="rcard">
+          <blockquote>«Невероятно классная и нишевая кофейня с уникальным интерьером, невероятным обслуживанием и удивительными напитками. Вдобавок ко всему, десерты здесь самые вкусные в городе по моему субъективному мнению.»</blockquote>
+          <figcaption>Захар Михайлович <time>26 марта</time></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 9. Как нас найти ===== -->
+  <section class="visit" id="visit">
+    <div class="container visit__grid">
+      <div class="visit__info">
+        <h2 class="visit__title split-lines">Как нас найти</h2>
+        <div class="visit__rows">
+          <div class="visit__row">
+            <span class="visit__label">Адрес</span>
+            <span class="visit__value">Чапаевская ул., 91, Самара</span>
+          </div>
+          <div class="visit__row">
+            <span class="visit__label">Телефон</span>
+            <a class="visit__value" href="tel:+79171478131">+7 (917) 147-81-31</a>
+          </div>
+          <div class="visit__row">
+            <span class="visit__label">Часы работы</span>
+            <span class="visit__value">Ежедневно, 11:00–21:00</span>
+            <ul class="hours">
+              <li><span>Понедельник</span><time>11:00–21:00</time></li>
+              <li><span>Вторник</span><time>11:00–21:00</time></li>
+              <li><span>Среда</span><time>11:00–21:00</time></li>
+              <li><span>Четверг</span><time>11:00–21:00</time></li>
+              <li><span>Пятница</span><time>11:00–21:00</time></li>
+              <li><span>Суббота</span><time>11:00–21:00</time></li>
+              <li><span>Воскресенье</span><time>11:00–21:00</time></li>
+            </ul>
+          </div>
+        </div>
+        <a class="btn btn--dark" href="https://yandex.ru/maps/?rtext=~Самара%2C%20Чапаевская%20улица%2C%2091&rtt=pd" target="_blank" rel="noopener">Построить маршрут</a>
+      </div>
+      <div class="visit__map">
+        <iframe title="Флора на карте Самары" src="https://yandex.ru/map-widget/v1/?text=Самара%2C%20Чапаевская%20улица%2C%2091&z=17" loading="lazy" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 10. Финал ===== -->
+  <section class="final" id="final">
+    <div class="final__media" data-speed="0.9">
+      <img src="assets/img/cheesecake-latte.webp" alt="Капучино и чизкейк на веранде кофейни" loading="lazy">
+      <div class="final__scrim"></div>
+    </div>
+    <div class="final__content">
+      <svg class="final__mark"><use href="#flora-mark"/></svg>
+      <h2 class="final__title split-lines">До встречи<br><em>среди зелени</em></h2>
+      <a class="btn btn--light" href="tel:+79171478131">Забежать на кофе</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== Footer ===== -->
+<footer class="footer">
+  <div class="container footer__grid">
+    <a class="footer__brand" href="#hero" aria-label="Флора, наверх">
+      <svg class="footer__mark"><use href="#flora-mark"/></svg>
+      <span>Флора</span>
+    </a>
+    <nav class="footer__links" aria-label="Навигация в подвале">
+      <a href="#menu">Меню</a>
+      <a href="#gallery">Атмосфера</a>
+      <a href="#about">О кофейне</a>
+      <a href="#visit">Контакты</a>
+    </nav>
+    <div class="footer__contact">
+      <a href="tel:+79171478131">+7 (917) 147-81-31</a>
+      <span>Чапаевская ул., 91, Самара</span>
+    </div>
+  </div>
+  <div class="container footer__bottom">
+    <span>© 2026 Кофейня «Флора»</span>
+    <span>Демо-сайт</span>
+  </div>
+</footer>
+</div>
+</div>
+
+<!-- ===== Lightbox ===== -->
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Просмотр фотографии">
+  <button class="lightbox__close" id="lightboxClose" aria-label="Закрыть">✕</button>
+  <figure class="lightbox__body">
+    <img id="lightboxImg" src="" alt="">
+    <figcaption id="lightboxCap"></figcaption>
+  </figure>
+</div>
+
+<!-- ===== Карточка блюда ===== -->
+<div class="dish" id="dish" aria-hidden="true" role="dialog" aria-label="Карточка блюда">
+  <div class="dish__backdrop" id="dishBackdrop"></div>
+  <div class="dish__card">
+    <button class="dish__close" id="dishClose" aria-label="Закрыть">✕</button>
+    <div class="dish__photo"><img id="dishImg" src="" alt=""></div>
+    <div class="dish__info">
+      <span class="dish__cat" id="dishCat"></span>
+      <h3 id="dishName"></h3>
+      <p id="dishDesc"></p>
+      <div class="dish__price"><span id="dishPrice"></span><em id="dishVol"></em></div>
+    </div>
+  </div>
+</div>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/ScrollSmoother.min.js"></script>
+<script src="vendor/SplitText.min.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
